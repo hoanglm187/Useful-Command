@@ -6,7 +6,9 @@
 - [Sudo no password](#sudo-no-password)
 - [Disable selinux](#disable-selinux)
 - [Upgrade kernel Ubuntu](#upgrade-kernel-ubuntu)
-
+- [Docker delete all container](#delete-all-container)
+- [Docker delete all images](#delete-all-images)
+- [Reset Docker](#reset-docker-delete-all-container-image-volume-and-network)
 ### Disable Password expire policy
 ```bash
 sudo chage -I -1 -m 0 -M 99999 -E -1 <username>
@@ -40,4 +42,16 @@ wget https://raw.githubusercontent.com/pimlie/ubuntu-mainline-kernel.sh/master/u
 install ubuntu-mainline-kernel.sh /usr/local/bin/
 ubuntu-mainline-kernel.sh -r
 ubuntu-mainline-kernel.sh -i "version"
+```
+### Delete all container
+```bash
+docker ps -aq | xargs docker rm -f
+```
+### Delete all images
+```bash
+docker images -q | xargs docker rmi -f
+```
+### Reset Docker (delete all container, image, volume and network)
+```bash
+docker system prune -a --volumes
 ```
