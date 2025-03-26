@@ -9,6 +9,7 @@
 - [Docker delete all container](#delete-all-container)
 - [Docker delete all images](#delete-all-images)
 - [Reset Docker](#reset-docker-delete-all-container-image-volume-and-network)
+- [MariaDB - Galera Cluster](#mariadb-galera-cluster)
 ### Disable Password expire policy
 ```bash
 sudo chage -I -1 -m 0 -M 99999 -E -1 <username>
@@ -54,4 +55,48 @@ docker images -q | xargs docker rmi -f
 ### Reset Docker (delete all container, image, volume and network)
 ```bash
 docker system prune -a --volumes
+```
+
+# Mariadb (Galera cluster)
+- Check cluster status
+```sql
+SHOW GLOBAL STATUS LIKE 'wsrep_%';
+SHOW GLOBAL STATUS LIKE 'wsrep_cluster_size';
+SHOW GLOBAL STATUS LIKE 'wsrep_cluster_status';
+SHOW GLOBAL STATUS LIKE 'wsrep_local_state_comment';
+SHOW GLOBAL STATUS LIKE 'wsrep_ready';
+SHOW GLOBAL STATUS LIKE 'wsrep_connected';
+SHOW GLOBAL STATUS LIKE 'wsrep_local_state_uuid';
+SHOW GLOBAL STATUS LIKE 'wsrep_last_committed';
+```
+- Check timout info
+```sql
+SHOW VARIABLES LIKE '%timeout%';
+SHOW VARIABLES LIKE '%wait_timeout%';
+SHOW VARIABLES LIKE '%interactive_timeout%';
+```
+- Check aborted info
+```sql
+SHOW GLOBAL STATUS LIKE 'Aborted_connects';
+SHOW GLOBAL STATUS LIKE 'Aborted_clients';
+```
+- How to determine the latest SEQNO node
+```sql
+SHOW GLOBAL STATUS LIKE 'wsrep_last_committed';
+```
+## Troubleshoot
+### **[ERROR] mariadbd: Index for table 'table_name' is corrupt; try to repair it**
+- Check the table to confirm the status
+```sql
+CHECK TABLE db_name.table_name EXTENDED;
+```
+- Use Repair Table (the safest):
+```sql
+REPAIR TABLE tio_site_main.chatroom_join_leave;
+-- or
+REPAIR TABLE tio_site_main.chatroom_join_leave EXTENDED;
+```
+- After repairing and checking:
+```sql
+CHECK TABLE db_name.table_name;
 ```
