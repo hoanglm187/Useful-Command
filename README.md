@@ -84,7 +84,8 @@ SHOW GLOBAL STATUS LIKE 'Aborted_clients';
 ```sql
 SHOW GLOBAL STATUS LIKE 'wsrep_last_committed';
 ```
-## Troubleshoot
+Troubleshoot
+---
 ### **[ERROR] mariadbd: Index for table 'table_name' is corrupt; try to repair it**
 - Check the table to confirm the status
 ```sql
@@ -99,4 +100,13 @@ REPAIR TABLE tio_site_main.chatroom_join_leave EXTENDED;
 - After repairing and checking:
 ```sql
 CHECK TABLE db_name.table_name;
+```
+# Gitlab List the versions available from the repository
+- Debian/Ubuntu:
+```bash
+apt-cache madison gitlab-ce
+```
+- CentOS/RHEL:
+```bash
+yum --showduplicates list gitlab-ce
 ```
