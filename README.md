@@ -11,6 +11,7 @@
 - [Reset Docker](#reset-docker-delete-all-container-image-volume-and-network)
 - [MariaDB - Galera Cluster](#mariadb-galera-cluster)
 - [Gitlab](#gitlab-list-the-versions-available-from-the-repository)
+- [Iptables](#iptables)
 ### Disable Password expire policy
 ```bash
 sudo chage -I -1 -m 0 -M 99999 -E -1 <username>
@@ -110,4 +111,14 @@ apt-cache madison gitlab-ce
 - CentOS/RHEL:
 ```bash
 yum --showduplicates list gitlab-ce
+```
+
+# Iptables
+- Check iptables status
+```bash
+for table in filter nat mangle raw security; do
+    echo "====== Table: $table ======"
+    iptables -t $table -L -v -n --line-numbers
+    echo ""
+done
 ```
