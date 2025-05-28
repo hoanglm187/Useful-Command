@@ -14,7 +14,7 @@
 - [Iptables](#iptables)
 ### Disable Password expire policy
 ```bash
-sudo chage -I -1 -m 0 -M 99999 -E -1 <username>
+sudo chage -I -1 -m 0 -M 99999 -E -1 hoanglm
 ```
 - ***-I -1: Vô hiệu hoá thời gian chờ tài khoản hoạt động***
 - ***-m 0: Đặt số ngày tối thiểu trước khi đổi mật khẩu là 0***
