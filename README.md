@@ -70,6 +70,7 @@ SHOW GLOBAL STATUS LIKE 'wsrep_ready';
 SHOW GLOBAL STATUS LIKE 'wsrep_connected';
 SHOW GLOBAL STATUS LIKE 'wsrep_local_state_uuid';
 SHOW GLOBAL STATUS LIKE 'wsrep_last_committed';
+SHOW GLOBAL STATUS LIKE 'wsrep_incoming_addresses';
 ```
 - Check timout info
 ```sql
