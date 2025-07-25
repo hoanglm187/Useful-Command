@@ -12,6 +12,9 @@
 - [MariaDB - Galera Cluster](#mariadb-galera-cluster)
 - [Gitlab](#gitlab-list-the-versions-available-from-the-repository)
 - [Iptables](#iptables)
+- [Chattr](#chattr)
+- [Parallel Scp](#parallel-scp)
+
 ### Disable Password expire policy
 ```bash
 sudo chage -I -1 -m 0 -M 99999 -E -1 hoanglm
@@ -131,3 +134,26 @@ chattr +i /path-to-file
 # Gỡ bỏ thuộc tính
 chattr -i /path-to-file
 ```
+
+# Parallel Scp
+- Sử dụng để copy file đến nhiều server cùng lúc
+- install parallel-scp
+```bash
+apt update
+apt install pssh
+```
+
+- Tạo danh sách server:
+```bash
+user1@192.168.1.101
+user1@192.168.1.102
+user2@192.168.1.103
+```
+
+- Chạy lệnh copy file đến nhiều server cùng lúc:
+```bash
+parallel-scp -A -x "-o StrictHostKeyChecking=no" -h hosts.txt filename /path-of-destination
+```
+- **-A**: yêu cầu nhập password cho từng server
+- **-x "-o StrictHostKeyChecking=no"**: bỏ qua việc kiểm tra key
+
