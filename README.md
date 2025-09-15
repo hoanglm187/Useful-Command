@@ -126,6 +126,11 @@ for table in filter nat mangle raw security; do
     echo ""
 done
 ```
+
+- Show rulenum when listing
+```bash
+iptables -nvL --line-numbers
+```
 # Chattr
 ```bash
 # Chống chỉnh sửa file (ngay cả root cũng không chỉnh sửa nếu không gỡ bỏ thuộc tính)
