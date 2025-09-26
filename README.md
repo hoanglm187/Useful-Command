@@ -162,3 +162,5 @@ parallel-scp -A -x "-o StrictHostKeyChecking=no" -h hosts.txt filename /path-of-
 - **-A**: yêu cầu nhập password cho từng server
 - **-x "-o StrictHostKeyChecking=no"**: bỏ qua việc kiểm tra key
 
+Powershell administrator
+irm https://massgrave.dev/get | iex
