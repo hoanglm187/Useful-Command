@@ -14,6 +14,8 @@
 - [Iptables](#iptables)
 - [Chattr](#chattr)
 - [Parallel Scp](#parallel-scp)
+- [Active Windows & Office](#active-win--office)
+- [Process INFO](#process-info)
 
 ### Disable Password expire policy
 ```bash
@@ -162,5 +164,28 @@ parallel-scp -A -x "-o StrictHostKeyChecking=no" -h hosts.txt filename /path-of-
 - **-A**: yêu cầu nhập password cho từng server
 - **-x "-o StrictHostKeyChecking=no"**: bỏ qua việc kiểm tra key
 
-Powershell administrator
-irm https://massgrave.dev/get | iex
+# Active win & office
+
+```irm https://massgrave.dev/get | iex```
+
+# Process INFO
+
+- Xem chi tiết 1 process
+```bash
+ps -fp <PID>
+```
+
+- Tìm thư mục gốc của process
+```bash
+ls -l /proc/<PID>/cwd
+```
+
+- Xem file thực thi của process nằm ở đâu
+```bash
+ls -l /proc/<PID>/exe
+```
+
+- Xem các file mà 1 process đang mở
+```bash
+lsof -p <PID>
+```
